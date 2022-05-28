@@ -16,7 +16,7 @@ public class JsonParser {
     JsonParser() {
     }
 
-    String readJsonFromFile(String fileName) {
+    public String readJsonFromFile(String fileName) {
         StringBuilder result = new StringBuilder();
         try (BufferedReader bufRead = new BufferedReader(new FileReader(fileName))) {
             String str;
@@ -30,7 +30,7 @@ public class JsonParser {
         return result.toString();
     }
 
-    boolean writeJsonToFile(String jsonData, String fileName) {
+    public boolean writeJsonToFile(String jsonData, String fileName) {
         try (FileWriter file = new FileWriter(fileName)) {
             file.write(jsonData);
             file.flush();
@@ -41,7 +41,7 @@ public class JsonParser {
         return true;
     }
 
-    List<Object> jsonToObjectList(String jsonData, Object myObject) {
+    public List<Object> jsonToObjectList(String jsonData, Object myObject) {
         List<Object> result = new ArrayList<>();
         try {
             JSONArray jsonArray = (JSONArray) new JSONParser().parse(jsonData);
@@ -56,7 +56,7 @@ public class JsonParser {
         return result;
     }
 
-    String listObjectToJson(List<Object> list) {
+    public String listObjectToJson(List<Object> list) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(list, new TypeToken<List<Object>>() {}.getType());
     }
